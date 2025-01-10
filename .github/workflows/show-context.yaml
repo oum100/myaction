@@ -1,0 +1,24 @@
+name: Show Context
+on: 
+  workflow_dispatch:
+    inputs:
+      name: 
+        description: 'Person to great'
+        default: 'World'
+        required: true
+
+env:
+  VAR1: 'flow1'
+  VAR2: 'flow2'
+  VAR3: 'flow3'
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Dump Github Contact
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
+          
